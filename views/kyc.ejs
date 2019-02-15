@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EtgCoin</title>
+
+<!--main stylesheet-->
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"  href="/static/css/font.css">
+<title>Etgcn</title>
+</head>
+
+<body>
+<div class="main profile-page kyc-block">
+    <div class="container-fluid header-block inner-header">
+        <div class=" container">
+            <nav class="navbar navbar-inverse menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand logo" href="/dashboard"><img src="/static/images/logo-black.png"></a> 
+                    </div>
+                    
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="/dashboard">Home</a></li>
+                        <!--<li><a href="#">About etgcn</a></li>-->
+                        <li><a href="#">Contact</a></li>
+                        <li class="user-icon"><a href="#"><i><img src="/static/images/user-icon.png"></i></a> </li>
+                        
+                    </ul>
+                </div>
+                 <a class="user-icon hidden visible-xs" href="#"><i><img src="/static/images/user-icon.png"></i></a> 
+                <div class="user-details-block">
+                            <div class="user-details">
+                               <% if(is_kyc == 0){ %>
+                                <div class="user-pic pull-left"> <img src="/static/images/user-red.png"> </div>
+                              <% } else { %>
+                              <div class="user-pic pull-left"> <img src="/static/images/user-icon.png"> </div>
+                              <% } %>
+                                <div class="user-name-block pull-left">
+                                    <h4><%= username %></h4>
+                                    <p><%= emailid %></p>
+                                </div>
+                                <p><a href="/logout">Logout</a> </p>
+                                <span class="close">x</span> <span class="arrow-up"></span> </div>
+                        </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid inner-content ">
+        <div class="container">
+            <div class="col-lg-3 inner-left">
+                <div class="user-details-kyc">
+                            <div class="user-details">
+                            <% if(is_kyc == 0){ %>
+                                <div class="user-pic pull-left"> <img src="/static/images/user-red.png"> </div>
+                              <% } else { %>
+                              <div class="user-pic pull-left"> <img src="/static/images/user-icon.png"> </div>
+                              <% } %>
+                                <div class="user-name-block pull-left">
+                                    <h4><%= username %> </h4>
+                                    <p> <%= emailid %> </p>
+                                </div>
+                                <ul class="clear-fix">
+                                     <% if(city && country != null) { %> 
+                                    <li>
+                                        <label>City : </label>
+                                        <span> <%= city %> </span></li>
+                                    <li>
+                                        <label>Country : </label>
+                                        <span>  <%= country %></span></li>
+                                           <% } %>
+                                    <li>
+                                        <label>EtherBalance : </label>
+                                        <span id="ethbal"></span></li>
+                                    <li>
+                                        <label>TokenBal : </label>
+                                        <span id="tknbal"> </span></li>
+                                </ul>
+                              <!--   <p>Buy ETGCN</p> -->
+</div>
+                        </div>
+                
+                
+                <div class="sale-info">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> My Account <i class="pull-right"><img src="/static/images/arrow-down.png"></i></a> </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        <a href="#">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Security Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Email History</a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-add">
+                    <h4>Account Adress</h4>
+                    <div class="copy-text">
+                    	 <% if(lightwallet_address != null) { %>
+            <p id="metaAdd" class="metaadd"><%= lightwallet_address %></p>
+         <% } else { %>
+            <p id="metaAdd" class="metaadd"><%= accountid %></p>
+         <% } %>
+                        <span class="pull-right" onclick="copyToClipboard('.metaadd')">Copy</span> </div>
+                </div>
+            </div>
+            <div class="col-lg-9 inner-right kyc-content">
+                <div class="profile-content clear-fix">
+                    
+                    <div class="profile-head clear-fix">
+                            <h2>My Details <span><%= msg %></span></h2>
+                        
+                    </div>
+                    
+                    <div class="kyc-form">
+                       <form method="post" action="/kyc" role="form" id="kycform">
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" required="required" name="firstname" id="inputFirstName" value="<%= firstname %> " readonly>
+                            <label>First Name</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="address1" id="inputAddress1" value="<%= address1 %>" required="required">
+                            <label>Address </label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text"  name="lastname" id="inputLastName" value="<%= lastname %>" required="required"readonly>
+                            <label>Last Name </label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="state" required="required" value="<%= state %>" required="required">
+                            <label>State</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="company_name" id="inputCompanyName" value="<%= companyname %>"required="required" >
+                            <label>Company Name</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="city" id="inputCity" value="<%= city %>" required="" required="required">
+                            <label>City</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="email" name="email" id="inputEmail" value="<%= emailid %>"  required="required" maxlength="60" >
+                            <label>Email Address</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="country" required="required" value="<%= country %>">
+                            <label>Country</label>
+                        </div>
+                    </div>
+                    <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="num" value="<%= phonenumber %>" required="required"readonly >
+                            <label>Phone number</label>
+                        </div>
+                    </div>
+                      <div class="field-block">
+                        <div class="group">
+                            <input type="text" name="zipcode" id="inputPostcode" value="<%= zipcode %>" required="required" >
+                            <label>Zip Code</label>
+                        </div>
+                    </div>
+   <% if(is_kyc == 0){ %>
+                    <div class="form-group btn-block clear-fix">
+                        <button type="submit" class="btn btn-default login-btn">Save Changes</button><a href="/dashboard">Skip</a>
+                    </div>
+   <% } %>
+                </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="dark-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Tokens</h3>
+                    <ul class="nav-footer">
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_news" href="#" ga-binded="done">News</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_dat" href="#" ga-binded="done"> Token and cryptocurrency database </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icocal" href="#" ga-binded="done"> ICO calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_stocal" href="#" ga-binded="done"> Security token calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_referral_programs" href="#" ga-binded="done"> Bounty programs </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_know" href="#" ga-binded="done"> Help center </a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Business</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_list" href="#" ga-binded="done"> List your token for free </a> </li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icoadv" href="#" ga-binded="done">ICO advisory</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icopre" href="#" ga-binded="done">Security token advisory</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_best_icoadv" href="#" ga-binded="done"> The best ICO Advisor 2018 </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_summit" href="#" ga-binded="done">ETG Coin Summit 2018</a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Other</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_fb" href="#" ga-binded="done"> Facebook</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_twit" href="#" ga-binded="done"> Twitter</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_privacy" href="#" ga-binded="done">Privacy and cookie policy</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_tos" href="#" ga-binded="done">Terms of service</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_sect_risk" href="#" ga-binded="done">Sector risk warnings</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4> &#8203; </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+</div>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script> 
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+    $(".inner-header .navbar-nav > li > a").css("color", "#616195");
+    
+    $(".group input").each(function(){
+    var input_value = $(this).val().length;
+    if(input_value > 0){
+              $(this).addClass('valid');
+              if($(this).val() == ""){$(this).removeClass('valid');}
+     }
+    else
+    {
+           $(this).removeClass('valid');
+     }
+    });
+    
+    $(".group input").keyup(function(){
+        
+        var input_value1 = $(this).val().length;
+        if( input_value1 > 0){
+            $(this).addClass('valid');
+        }
+        else
+        {
+            $(this).removeClass('valid');
+        }
+    });
+    
+	//user-details-block
+	$(".user-icon").click(function(){
+	  $(".user-details-block").show();
+	});
+
+	$(".close").click(function(){
+	  $(".user-details-block").hide();
+	});
+	
+	
+	//order-summary-block
+	$(".cart").click(function(){
+	  $(".order-summary-block").show();
+	});
+</script>
+<script type="text/javascript">
+  
+    $('#kycform').submit(function() {
+            var pincode =  document.getElementById("inputPostcode").value;
+            
+         
+           if(!(pincode.length==6)){
+           document.getElementById("pinerror").innerHTML="*Invalid Zipcode";
+            return false;
+          }
+          else{
+            return true;
+          }
+});
+// for copying 
+    function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+</script>
+<script type="text/javascript" src="/static/js/main.js"></script>
+</body>
+</html>

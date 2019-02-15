@@ -1,0 +1,269 @@
+<head>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ETGCN SALE - ETISBEW</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Styling -->
+    <link href="/static/css/customfont.css?family=Open+Sans:300,400,600|Raleway:400,700" rel="stylesheet">
+    <link href="/static/css/all.min.css?v=76f988" rel="stylesheet">
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/innovaminex.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script src="/static/js/scripts.min.js?v=76f988"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        function script(url) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        }
+    </script>
+    <script>script('/static/js/main.js');</script>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 25, 2018 14:52:43").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get todays date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Display the result in the element with id="demo"
+          document.getElementById("ending_date").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+
+          // If the count down is finished, write some text 
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("ending_date").innerHTML = "EXPIRED";
+            document.getElementById("safeWithdrawal").disabled = false; 
+
+          }
+        }, 1000);
+    </script>
+</head>
+<body data-phone-cc-input="">
+    <% if(userId != null) { %>
+    <section id="userheader"></section>
+    <% } else{ %>
+    <section id="header"></section>
+        <% } %>
+
+    <section id="main-body">
+
+
+
+        <div class="container">
+            <div class="row">
+
+                <!-- Container for main page display content -->
+                <div class="col-xs-12 main-content">
+                    <div class="header-lined">
+                        <h1>ETGCN SALE</h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="index.php">            Portal Home
+                                </a>        </li>
+                                <li class="active">
+                                    ETGCN SALE
+                                </li>
+                            </ol>
+                        </div>
+
+                        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700&amp;subset=cyrillic,cyrillic-ext,latin-ext,vietnamese" rel="stylesheet">
+
+                        <section class="detalles" style="background:#fff url('/static/img/bchax-izq.png') no-repeat bottom left;">
+                            <div class="fondo">
+                                <div class="container"> 
+                                    <div class="row">       
+                                        <div class="col-md-12 text-center titular">
+                                            <p>&nbsp;</p>
+                                            <p>&nbsp;</p>
+                                            <h1>ETGCN <strong>Sale</strong></h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+<!-- <ul class="tabs">
+<li class="tab-link current" data-tab="tab-1">Phase 1<small>2018-11-26</small><span class="ofertadisc">30% Discount</span></li>
+<li class="tab-link" data-tab="tab-2">Phase 2<small>2018-12-10</small><span class="ofertadisc">24% Discount</span></li>
+<li class="tab-link" data-tab="tab-3">Phase 3<small>2018-12-24</small><span class="ofertadisc">16% Discount</span></li>
+<li class="tab-link" data-tab="tab-4">Phase 4<small>2019-01-07</small><span class="ofertadisc">10% Discount</span></li>
+</ul> -->
+<div id="anchor-detallefase" style="font-size:1px;">&nbsp;</div>
+<div id="tab-1" class="tab-content current">
+    <div class="col-md-8">
+
+        <table class="table texto-chico">
+            <tbody>
+                <tr>
+                    <td style="border-top:0;"><strong>Starting</strong></td>
+                    <td style="border-top:0;"><strong>2018-12-04 &nbsp;&nbsp;&nbsp;10:51:54</strong></td>
+                </tr> 
+                <tr>
+                    <td><strong>Ending</strong></td>
+                    <td><strong id="ending_date"></strong></td>
+                </tr> 
+<!-- <tr>
+<td><strong>Bonus</strong></td>
+<td style="color:#b9986c;"><strong>30% Discount</strong></td>
+</tr>  -->                                                                                                              
+<tr>
+    <td><strong>Target Amount</strong></td>
+    <td><strong id="target_amt"></strong></td>
+
+</tr>  
+<tr>
+    <td><strong>Amount raised</strong></td>
+    <td><strong id="raised_amt"></strong></td>
+
+</tr>  
+<tr>
+    <td><strong>Minimum personal purchase</strong></td>
+    <td><strong>1 ETGCN</strong></td>
+</tr> 
+<tr>
+    <td><strong>Maximum personal purchase</strong></td>
+    <td><strong>No limit</strong></td>
+</tr>                                         
+<tr>
+    <td><strong>Accepted Cryptocurrency</strong></td>
+    <td><strong>ETH </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>                                          
+</tbody>
+</table> 
+</div>           
+<div class="col-md-4 text-left" >
+    <h4>Public Sale is Live</h4>
+    <h2 class="timeout" style="color:#333"></h2>
+    <div id="myProgress" style="background-color:#f7f7f7;border:1px solid #ddd;">
+        <div id="myBar"></div>
+        <span>Buy ETGCN now!</span>
+    </div>
+    <p style="color:#999;margin-top:10px;margin-bottom:30px;"> Target: <strong style="color:#b9986c;">10,000 ETH</strong></p>
+    <p>
+    <a href="purchase" class="btn btns-header"><i class="fas fa-shopping-cart"></i> &nbsp;Buy ETGCN</a>
+    <% if(userId != null) { %>
+    <button id="safeWithdrawal" class="btn btns-header" disabled>Refund my Ether</button></p>
+    <% } %>
+</div>  
+
+
+</div>
+
+
+
+</div>
+
+</div>  
+<p>&nbsp;</p>
+</div>  
+
+</div>
+</section>
+
+
+
+</div><!-- /.main-content -->
+<div class="clearfix"></div>
+</div>
+</div>
+</section>
+
+<section id="footer" style="font-size:13px;">
+
+</section>
+
+
+<div class="modal system-modal fade" id="modalAjax" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content panel panel-primary">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body panel-body">
+                Loading...
+            </div>
+            <div class="modal-footer panel-footer">
+                <div class="pull-left loader">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> Loading...
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary modal-submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadImageModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="uploadForm" enctype="multipart/form-data" role="form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Update Picture</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="uploadMessages"></div>
+                    <div class="text-center"><label class="radio-inline">
+                        <input type="radio" name="imagetype" id="imagetype" value="gravatar"> Gravatar
+                    </label><label class="radio-inline">
+                        <input type="radio" name="imagetype" id="imagetype" value="computer"> From Computer
+                    </label><label class="radio-inline">
+                        <input type="radio" name="imagetype" id="imagetype" value="url"> From URL
+                    </label></div>
+                    <div class="uploadBox gravatar" style="display: none;">
+                        <h3 class="text-center">Gravatar</h3>
+                        <input type="text" name="gravatar" id="gravatar" class="form-control" placeholder="Enter Your Email Address">
+                        <span id="helpBlock" class="help-block text-center"><a href="https://en.gravatar.com/connect/?source=_signup" target="_blank">Click here to create your own gravatar account</a></span>
+                    </div>
+                    <div class="uploadBox computer" style="display: none;">
+                        <h3 class="text-center">Upload Picture</h3>
+                        <input type="file" name="file" id="file" class="filestyle" data-icon="false" data-buttonText="Choose Picture">
+                    </div>
+                    <div class="uploadBox url" style="display: none;">
+                        <h3 class="text-center">Picture URL</h3>
+                        <input type="text" name="url" id="url" class="form-control" placeholder="Enter Your Picture Full URL">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <script type="text/javascript" src="js/bootstrap-filestyle.js"></script> -->
+<script>
+
+</script>
+</body>

@@ -1,0 +1,170 @@
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/jquery-ui.min.css" />
+     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ETGCN SALE - ETISBEW</title>
+    <link rel="icon" type="image/ico" href="/static/img/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- Styling -->
+    <link href="/static/css/customfont.css?family=Open+Sans:300,400,600|Raleway:400,700" rel="stylesheet">
+    <link href="/static/css/all.min.css?v=76f988" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/innovaminex.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script src="/static/js/scripts.min.js?v=76f988"></script>
+    <link href="/static/css/flags.css" rel="stylesheet">
+    <script src="/static/js/jquery.flagstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   <script type="text/javascript">
+        function script(url) {
+            var s = document.createElement('script');
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = url;
+            var x = document.getElementsByTagName('head')[0];
+            x.appendChild(s);
+        }
+    </script>
+    <script>script('/static/js/main.js');</script>
+    <style type="text/css">
+        .popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+    </style>
+</head>
+
+
+<body>
+
+    <section id="userheader">
+    </section>
+    <section id="main-body">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6"> 
+            <div menuItemName="Client Details" class="panel panel-sidebar panel-sidebar">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    <i class="fas fa-user"></i>&nbsp;                    ADMIN DETAILS
+                                    <i class="fa fa-chevron-up panel-minimise pull-right"></i>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <strong>Admin Name :</strong><%= user %> <br>
+                                <strong>Admin Account : </strong> <br>
+                               <strong>Admin EtherBal :</strong>  <br>
+                               <strong>Admin TokenBal :</strong>  <br>
+
+
+                            </div>
+<!--                             <div class="panel-footer clearfix">
+                                <a href="clientarea.php?action=details" class="btn btn-success btn-sm btn-block">
+                                    <i class="fas fa-pencil-alt"></i> Update
+                                </a>
+                            </div> -->
+                        </div>
+          
+
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="overflow-x:auto;overflow-y:auto;">
+             <table class="table texto-chico" border="1">
+                <thead>
+                    <td ><strong>Name</strong></td>
+                    <td ><strong>Account Address</strong></td>
+                    <td ><strong>Ether Balance</strong></td>
+                    <td ><strong>Token Balance</strong></td>
+                    <td ><strong>Last Login Time</strong></td>
+                    <td><strong>Transaction hash</strong></td>
+                </thead>
+                <tbody>
+                    <% results.forEach(function(el, index) { %>
+                        <tr>
+                        <td ><strong><%= el.user_name %></strong></td>
+                        <td id="<%=index%>"><strong><%= el.account_id %></strong></td>
+                        <td id="<%=index%>eth"><strong><script></script></strong></td>
+                        <td ><strong></strong></td>
+                        <td ><strong></strong></td>
+                        <td ><strong></strong></td>
+                    </tr>  
+                    <% }); %>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>     
+</div>
+    </section>
+
+
+        <section id="footer" style="font-size:13px;">
+        </section>
+
+       </body>

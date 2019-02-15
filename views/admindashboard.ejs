@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EtgCoin</title>
+
+<!--main stylesheet-->
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"  href="/static/css/font.css">
+
+ <script type="text/javascript" src="/static/js/main.js"></script>
+ <style type="text/css">
+     
+     .table-wrapper-scroll-y {
+display: block;
+max-height: 500px;
+overflow-y: auto;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+}
+ </style>
+
+<title>Etgcn</title>
+</head>
+
+<body>
+<div class="main profile-page kyc-block">
+    <div class="container-fluid header-block inner-header">
+        <div class=" container">
+            <nav class="navbar navbar-inverse menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand logo" href="/admindashboard"><img src="/static/images/logo-black.png"></a> 
+                    </div>
+                    
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="/admindashboard">Home</a></li>
+                        <li><a href="#">About etgcn</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li class="user-icon"><a href="#"><i><img src="/static/images/user-icon.png"></i></a> </li>
+                        
+                    </ul>
+                </div>
+                 <a class="user-icon hidden visible-xs" href="#"><i><img src="/static/images/user-icon.png"></i></a> 
+                <div class="user-details-block">
+                            <div class="user-details">
+                                <div class="user-pic pull-left"> <img src="/static/images/user-red.png"> </div>
+                                <div class="user-name-block pull-left">
+                                    <h4><%= user %></h4>
+                                    <p><%= emailid %></p>
+                                </div>
+                                <ul class="clear-fix">
+                                    <li>
+                                        <label>City : </label>
+                                        <span> <%= city %> </span></li>
+                                    <li>
+                                        <label>Country : </label>
+                                        <span> <%= country %> </span></li>
+                                    <li>
+                                        <label>EtherBalance : </label>
+                                        <span id="ethbal1"> Eth</span></li>
+                                    <li>
+                                        <label>TokenBal : </label>
+                                        <span id="tknbal1"> ETGCN</span></li>
+                                </ul>
+                                <p>Buy ETGCN</p>
+                                <p><a href="/logout">Logout</a> </p>
+                                <span class="close">x</span> <span class="arrow-up"></span> </div>
+                        </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container-fluid inner-content ">
+        <div class="container">
+            <div class="col-lg-3 inner-left">
+            <div class="account-add">
+                    <h4>Account Adress</h4>
+                    <div class="copy-text">
+                        <p class="metaadd" id="metaAdd"><%= accountid %></p>
+                        <span class="pull-right" onclick="copyToClipboard('.metaadd')">Copy</span> </div>
+                </div>
+                <div class="admin-details ">
+                                
+                                
+                                <ul class="clear-fix">
+                                    <li>
+                                        <label>Admin Name : </label>
+                                        <span><%= user %></span></li>
+                                    <li>
+                                        <label>Email :  </label>
+                                        <span> <%= emailid %></span></li>
+                                    <li>
+                                        <label>City  : </label>
+                                        <span> <%= city %></span></li>
+                                    <li>
+                                        <label>Country  : </label>
+                                        <span> <%= country %></span></li>
+                                </ul>
+</div>
+                
+                
+                
+                
+            </div>
+            <div class="col-lg-9 inner-right kyc-content">
+                <div class="profile-content clear-fix">
+                    
+                    <div class="profile-head clear-fix">
+                            <h2>Welcome Back,<%= user %></h2>
+                        
+                    </div>
+                    
+                    <div class="admin-content-top clear-fix">
+                        
+                                    <div class="col-lg-3">
+                                        <label>Ether Balance :   </label>
+                                        <span id="ethbal">  </span></div>
+                                    <div class="col-lg-3">
+                                        <label>Total Supply : </label>
+                                        <span id="totalsupply"></span></div>
+                                    <div class="col-lg-3">
+                                        <label>Phase I users : </label>
+                                        <span><%= results.length %> </span></div>
+                                  
+                                         <div class="col-lg-3">
+                                        <label>Total Number of Users :  </label>
+                                        <span ><%= results.length %> </span></div>
+                                         <div class="col-lg-3">
+                                        <label>Token Balance :  </label>
+                                        <span id="tknbal"></span></div>
+                                        <div class="col-lg-3">
+                                        <label>Token for sale :  </label>
+                                        <span id="tokens_for_sale"></span></div>
+                                   <div class="col-lg-3">
+                                        <label>Phase II users :  </label>
+                                        <span>0 </span></div>
+                                   
+                                   
+                    </div>
+                    <div>
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default ">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <div class="panel-title"> <div role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span class="pull-left"><i><img src="/static/images/camera-icon.png"></i>Phase </span>
+                                <ul class="admin-info">
+
+
+                                        
+                                    <li>
+                                        <label>Starting date: </label>
+                                        <span> 2018-12-04 </span></li>
+                                    <li>
+                                        <label>Ending date :  </label>
+                                        <span id="ending_date"> Expired </span></li>
+                                    <li>
+                                        <label>Total tokens for sale  : </label>
+                                        <span> 10000</span></li>
+                                    <li>
+                                        <label>Token sold  : </label>
+                                        <span id="tokens_sold"> </span></li>
+                                </ul>
+                                <i class="pull-right"><img src="/static/images/arrow-down.png"></i></div> </div>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body" >
+                                    <div class="table-wrapper-scroll-y">
+                                <div class="profile-table table table-striped  table-responsive table-bordered">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <p style="display: none;" id="length"><%= results.length %></p>
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Name</th>
+                                    <th>Account Address</th>
+                                    <th>Ether Balance</th>
+                                    <th>Token Balance</th>
+                                    <th>Last Login Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <% results.forEach(function(el, index) { %>
+                                <tr>
+                                    <td ><%= el.id %></td>
+                                    <td ><%= el.user_name %></td>
+                                    <% if(el.lightwallet_address != null) { %>
+                                         <td  class="account" id="<%=index%>"><%= el.lightwallet_address %></td>
+                                     <% } else { %>
+                                        <td  class="account" id="<%=index%>"><%= el.account_id %></td>
+                                     <% } %>
+                                    <td id="<%=index%>eth"></td>
+                                    <td id="<%=index%>tkn"></td>
+                                    <td ><%= el.lastloggedtime %></td>
+                                </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                        </div>
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="dark-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Tokens</h3>
+                    <ul class="nav-footer">
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_news" href="#" ga-binded="done">News</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_dat" href="#" ga-binded="done"> Token and cryptocurrency database </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icocal" href="#" ga-binded="done"> ICO calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_stocal" href="#" ga-binded="done"> Security token calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_referral_programs" href="#" ga-binded="done"> Bounty programs </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_know" href="#" ga-binded="done"> Help center </a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Business</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_list" href="#" ga-binded="done"> List your token for free </a> </li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icoadv" href="#" ga-binded="done">ICO advisory</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icopre" href="#" ga-binded="done">Security token advisory</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_best_icoadv" href="#" ga-binded="done"> The best ICO Advisor 2018 </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_summit" href="#" ga-binded="done">ETG Coin Summit 2018</a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Other</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_fb" href="#" ga-binded="done"> Facebook</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_twit" href="#" ga-binded="done"> Twitter</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_privacy" href="#" ga-binded="done">Privacy and cookie policy</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_tos" href="#" ga-binded="done">Terms of service</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_sect_risk" href="#" ga-binded="done">Sector risk warnings</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4> &#8203; </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+</div>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script> 
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script> 
+<script type="text/javascript">
+    $(".inner-header .navbar-nav > li > a").css("color", "#616195");
+    
+    $(".group input").each(function(){
+    var input_value = $(this).val().length;
+    if(input_value > 0){
+              $(this).addClass('valid');
+              if($(this).val() == ""){$(this).removeClass('valid');}
+     }
+    else
+    {
+           $(this).removeClass('valid');
+     }
+    });
+    
+    $(".group input").keyup(function(){
+        
+        var input_value1 = $(this).val().length;
+        if( input_value1 > 0){
+            $(this).addClass('valid');
+        }
+        else
+        {
+            $(this).removeClass('valid');
+        }
+    });
+    
+    //user-details-block
+    $(".user-icon").click(function(){
+      $(".user-details-block").show();
+    });
+
+    $(".close").click(function(){
+      $(".user-details-block").hide();
+    });
+    
+    
+    //order-summary-block
+    $(".cart").click(function(){
+      $(".order-summary-block").show();
+    });
+
+    
+    function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+
+    </script>
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 25, 2018 14:52:43").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get todays date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Display the result in the element with id="demo"
+          document.getElementById("ending_date").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+            document.getElementById("ending_date1").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+
+          // If the count down is finished, write some text 
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("ending_date").innerHTML = "EXPIRED";
+            document.getElementById("ending_date1").innerHTML = "EXPIRED";
+            document.getElementById("safeWithdrawal").disabled = false; 
+
+          }
+        }, 1000);
+    </script>
+
+    <script type="text/javascript" src="/static/js/main.js"></script>
+</body>
+
+</html>

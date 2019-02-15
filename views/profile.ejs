@@ -1,0 +1,486 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EtgCoin</title>
+
+<!--main stylesheet-->
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"  href="/static/css/font.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="/eth-lightwallet/dist/lightwallet.js"></script>
+    
+    <script type="text/javascript" src="../eth-lightwallet/node_modules/async/lib/async.js"></script>
+    <!-- <script src="../eth-lightwallet/node_modules/hooked-web3-provider/build/hooked-web3-provider.js"></script> -->
+    <script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
+    <script type="text/javascript" src="../eth-lightwallet/node_modules/web3/dist/web3.js"></script>
+    <!-- <script src="../ethjs-provider-signer/dist/ethjs-provider-signer.js"></script> -->
+
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+    <style type="text/css">
+        .table-wrapper-scroll-y {
+display: block;
+max-height: 500px;
+overflow-y: auto;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+}   
+
+
+    </style>
+  
+<title>Etgcn</title>
+</head>
+
+<body>
+<div class="main profile-page">
+    <div class="container-fluid header-block inner-header">
+        <div class=" container">
+            <nav class="navbar navbar-inverse menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand logo" href="/dashboard"><img src="/static/images/logo-black.png"></a> 
+                    </div>
+                    
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="/dashboard">Home</a></li>
+                        <li><a href="#">About etgcn</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li class="user-icon"><a href="#"><i><img src="/static/images/user-icon.png"></i></a> </li>
+                        
+                    </ul>
+                </div>
+                 <a class="user-icon hidden visible-xs" href="#"><i><img src="/static/images/user-icon.png"></i></a> 
+                <div class="user-details-block">
+                            <div class="user-details">
+                               <% if(is_kyc == null){ %>
+                                <div class="user-pic pull-left"> <img src="/static/images/user-red.png"> </div>
+                              <% } else { %>
+                              <div class="user-pic pull-left"> <img src="/static/images/user-icon.png"> </div>
+                              <% } %>
+                                <div class="user-name-block pull-left">
+                                    <h4><%= user %> </h4>
+                                    <p> <%= emailid %> </p>
+                                </div>
+                                <ul class="clear-fix">
+                                     <% if(city && country != null) { %> 
+                                    <li>
+                                        <label>City : </label>
+                                        <span> <%= city %> </span></li>
+                                    <li>
+                                        <label>Country : </label>
+                                        <span>  <%= country %></span></li>
+                                    <% } %>
+                                    <li>
+                                        <label>EtherBalance : </label>
+                                        <span id="ethbal"></span></li>
+                                    <li>
+                                        <label>TokenBal : </label>
+                                        <span id="tknbal"> </span></li>
+                                </ul>
+                                <p><a href="/kyc">KYC</a></p>
+                                <p><a href="/logout">Logout </a></p>
+                                <span class="close">x</span> <span class="arrow-up"></span> </div>
+                    </div>
+            </nav>
+        </div>
+    </div>
+    <div>
+        <% if(lightwallet_address == null) { %>
+            <p id="lwadd"><%= lightwallet_address %></p>
+         <% } %>
+    </div>
+    <div class="container-fluid inner-content ">
+        <div class="container">
+            <div class="col-lg-3 inner-left">
+                <div class="account-add">
+                    <h4>Account Adress</h4>
+                    <div class="copy-text">
+                        <% if(lightwallet_address != null) { %>
+            <p id="metaAdd" class="metaadd"><%= lightwallet_address %></p>
+         <% } else { %>
+            <p id="metaAdd" class="metaadd"><%= accountid %></p>
+         <% } %>
+                        
+                        <span class="pull-right" onclick="copyToClipboard('.metaadd')">Copy</span> </div>
+                </div>
+                <div class="encryption-key account-add">
+                    <h4>Encryption key</h4>
+                    <div class="copy-text">
+                        <p class="pvt1"><%= lightwallet_privatekey %></p>
+                        <span class="pull-right" onclick="copyToClipboard('.pvt1')">Copy</span> </div>
+                </div>
+                <div class="sale-info">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> ETGCN Sale Info <i class="pull-right"><img src="/static/images/arrow-down.png"></i></a> </h4>
+                            </div>
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <li>
+                                        <label>Acquired ETGCN :</label>
+                                        <span><strong id="tknbal1"></strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Starting : </label>
+                                        <span> <strong>2018-12-04    10:51:54</strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Ending :</label>
+                                        <span><strong id="ending_date"></strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Target Amount :</label>
+                                        <span><strong id="target_amt"></strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Amount raised :</label>
+                                        <span><strong id="raised_amt"></strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Minimum purchase :</label>
+                                        <span><strong> 1 ETGCN</strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Maximum purchase :</label>
+                                        <span><strong>No limit</strong></span>
+                                    </li>
+                                    <li>
+                                        <label>Accepted Cryptocurrency :</label>
+                                        <span><strong> ETH </strong></span>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 inner-right">
+                <div class="profile-content clear-fix">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Portal Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Client Area</a></li>
+                        </ol>
+                    </nav>
+                    <div class="profile-head clear-fix">
+                        <div class="col-lg-5">
+                            <h2>Welcome Back, <%= user %> </h2>
+                            <% if(is_kyc == null){ %>
+                                <h4 style="color: red"><%= kyc %> <a href="/kyc">clickhere</a></h4>
+                            <% } %>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="select-block pull-left">
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>ETG CN</option>
+                                    <option>My Tokens 20</option>
+                                    <option>My Tokens 30</option>
+                                    <option>My Tokens 40</option>
+                                    <option>My Tokens 50</option>
+                                </select>
+                            </div>
+                            <div class="refund pull-left"><span id="safeWithdrawal">Refund my Ether</span></div>
+
+<form id="loginform" method="post" action="/qrcode" role="form">
+    <div style="display: none;">                                  
+                                <input type="text" class="form-control" size="42" name="send_from" id="sendFrom1" value="<%= lightwallet_address %>"></input>
+                                PrivateKey:
+                                <input type="text" class="form-control" name="pvt_key" id="pvt_key1" value="<%= lightwallet_privatekey %>"></input>
+                                To: <input type="text" class="form-control" size="42" name="send_to" id="sendTo" value="0x7d04EdC8C00BBAA69346336582328092EBd557B5"></input>
+                                 <input type="text" class="form-control" name="tknbal" id="tokenbal2" value="2"></input>
+
+                                
+    </div>
+        <% if(is_kyc != null){ %>
+                    <div class="cart pull-right"><span><i><img src="/static/images/cart.png"></i>Buy</span>
+        <% } %>
+
+                            <div class="order-summary-block">
+                            <div class="order-summary">
+                                <h3>Order Summary</h3> 
+                               <h4>ETG COIN - Crowdsale <span class="closebuy">X</span></h4> 
+                                    <div class="select-block ">
+                                        <select class="form-control" id="exampleFormControlSelect1">
+                                            <option>ETG CN</option>
+                                            <option>My Tokens 20</option>
+                                            <option>My Tokens 30</option>
+                                            <option>My Tokens 40</option>
+                                            <option>My Tokens 50</option>
+                                        </select>
+                                        <span>1 ETH = 1 ETGCN</span>
+                                   </div>
+
+                                   <ul>
+
+                                    <input type="number" name="ethers" min="1" max="100000" size="5" maxlength="5" class="form-control" onkeyup="recalctotals(this.value)">
+                                        <li>
+                                            <div class="pull-left">ETGCN: <span class="updatedprice"></span></div>
+                                            <div class="pull-right" ><span class="updatedprice"></span> ETH</div>
+                                        </li>
+                                        <li class="text-right">Total amount : <span class="updatedprice"></span></li>
+
+                                   </ul>
+
+                                 <!--   <div class="btn-continue"> -->
+                                     <input type="submit" class="btn btn-primary" value="Buy Tokens"></input>
+<!--                                     <span>Continue<i><img src="/static/images/arrow-right.png"></i></span> -->
+                                        
+                                  <!--  </div> -->
+                            </div>
+                        </div>
+                    </div>
+        </form>
+                        </div>
+                    </div>
+                    <div class="profile-count clear-fix">
+                        <div class="col-lg-6 col-xs-12 token-count">
+                            <ul>
+                                <li> <strong id="totalsupply"></strong> <span>Total</span> </li>
+                                <li> <strong id="tokens_for_sale">0</strong> <span>Tokens for sale</span> </li>
+                                <li> <strong id="company_stake">0</strong> <span>Company stake</span> </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-xs-12 profie-timer" style="margin-top: -20px"> 
+                          <h2 class="timeout" style="color:#333"></h2>
+                                <p style="color:#646464; font-size:15px; text-align: right; margin-bottom: -1px;">Time left :<span id="ending_date1"></span></p>
+                                                <div id="myProgress" style="background-color:#f7f7f7;border:1px solid #ddd; font-size:18px;height:18px;">
+                                                    <div id="myBar" style="height:18px;border-radius:0px;"></div>
+                                                </div>
+                                                <p style="color:#646464;margin-top: 5px; font-size:15px;"> Target: <strong style="color:#d7a843;">10,000 ETH</strong></p>
+                                                
+                                                </div>      
+                    </div>
+                    <div class="table-wrapper-scroll-y">
+                    <div class="profile-table table table-striped  table-responsive table-bordered">
+
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Name</th>
+                                    <th>Sender Address</th>
+                                    <th>Ether Balance</th>
+                                    <th>Token Balance</th>
+                                    <th>Last Login Time</th>
+                                    <th>Transaction hash</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <% if(results != null){ %>
+                
+
+                                <% results.forEach(function(el, index) { %>
+                                <tr>
+                                    <td ><%= index +1 %></td>
+                                    <td ><%= el.user_name %></td>
+                                    <td><%= el.lightwallet_address %></td>             
+                                    <td><%= el.ether_balance %> ETH</td>
+                                    <td><%= el.token_balance %> ETGCN</td>
+                                    <td ><%= el.lastloggedtime %></td>
+                                    <td><%= el.transaction_hash %></td>
+                                </tr>
+                                <% }); %>
+                                 <% } else { %>
+                                 <tr>
+                                     <td colspan="7" style="height: 150px;"> <strong style="font-size: 20px;">No transactions yet :)</strong></td>
+
+                                 </tr>
+
+                               <% } %>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="dark-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Tokens</h3>
+                    <ul class="nav-footer">
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_news" href="#" ga-binded="done">News</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_dat" href="#" ga-binded="done"> Token and cryptocurrency database </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icocal" href="#" ga-binded="done"> ICO calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_stocal" href="#" ga-binded="done"> Security token calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_referral_programs" href="#" ga-binded="done"> Bounty programs </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_know" href="#" ga-binded="done"> Help center </a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Business</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_list" href="#" ga-binded="done"> List your token for free </a> </li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icoadv" href="#" ga-binded="done">ICO advisory</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icopre" href="#" ga-binded="done">Security token advisory</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_best_icoadv" href="#" ga-binded="done"> The best ICO Advisor 2018 </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_summit" href="#" ga-binded="done">ETG Coin Summit 2018</a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Other</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_fb" href="#" ga-binded="done"> Facebook</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_twit" href="#" ga-binded="done"> Twitter</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_privacy" href="#" ga-binded="done">Privacy and cookie policy</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_tos" href="#" ga-binded="done">Terms of service</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_sect_risk" href="#" ga-binded="done">Sector risk warnings</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4> &#8203; </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="modal fade popup-block" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <h2 class="text-center">Your new wallet seed is: </h2>
+          <p class="greytext" id="ranseed"></p>
+          <button onclick="copyToClipboard('.greytext')">Copy</button>
+
+<p class="redtext">Please write it down on paper or in a password manager, you will need it to access your wallet. Do not let anyone see this seed or they can take your Ether. Please enter a password to encrypt your seed while in the browser.</p>
+                <form action="/walletcreation" method="post">
+                    <div class="field-block">
+                        <div class="group">
+                        <input type="" name="lightwallet_seed" id="ranseed1" style="display: none;"></input>
+                        <input type="text" class="form-control" size="42" name="lightwallet_address" id="sendFrom" style="display: none;"></input>
+                         <input type="text" class="form-control" name="lightwallet_privatekey" id="pvt_key" style="display: none;"></input>
+                            <input type="password" name="lightwallet_password" required="required" maxlength="60" id="password"></input>
+                            <label>Enter password </label>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="form-group text-center bottom-btns">
+                        <button type="submit" class="btn btn-default login-btn pull-left">Ok</button> <a>Cancel</a>
+                    </div>
+                      
+                </form>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+        </div>
+      
+    </div>
+  </div>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script> 
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(".inner-header .navbar-nav > li > a").css("color", "#616195");
+    
+    $(".group input").each(function(){
+    var input_value = $(this).val().length;
+    if(input_value > 0){
+              $(this).addClass('valid');
+              if($(this).val() == ""){$(this).removeClass('valid');}
+     }
+    else
+    {
+           $(this).removeClass('valid');
+     }
+    });
+    
+    $(".group input").keyup(function(){
+        
+        var input_value1 = $(this).val().length;
+        if( input_value1 > 0){
+            $(this).addClass('valid');
+        }
+        else
+        {
+            $(this).removeClass('valid');
+        }
+    });
+    //user-details-block
+    $(".user-icon").click(function(){
+      $(".user-details-block").show();
+    });
+
+    $(".close").click(function(){
+      $(".user-details-block").hide();
+    });
+    // for pop up modal
+    $(document).ready(function(){
+    id=$("#lwadd").html();
+    if(id==""){
+       newWallet();
+    }
+});
+    //order-summary-block
+$(".cart").click(function(){
+      $(".order-summary-block").show();
+    });
+
+    $(".closebuy").click(function(){
+      $(".order-summary-block").hide();
+    });
+    // for copying text to clipboard from popup
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+    </script>
+     <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("Dec 25, 2018 14:52:43").getTime();
+        
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+          // Get todays date and time
+          var now = new Date().getTime();
+
+          // Find the distance between now and the count down date
+          var distance = countDownDate - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          // Display the result in the element with id="demo"
+          document.getElementById("ending_date").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+            document.getElementById("ending_date1").innerHTML = days + "d " + hours + "h "
+          + minutes + "m " + seconds + "s ";
+
+          // If the count down is finished, write some text 
+          if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("ending_date").innerHTML = "EXPIRED";
+            document.getElementById("ending_date1").innerHTML = "EXPIRED";
+            document.getElementById("safeWithdrawal").disabled = false; 
+
+          }
+        }, 1000);
+    </script>
+
+</body>
+<script type="text/javascript" src="/static/js/main.js"></script>
+</html>
+
+
+
+
+ 
+
+

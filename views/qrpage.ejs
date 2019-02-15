@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EtgCoin</title>
+
+<!--main stylesheet-->
+
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"  href="/static/css/font.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="/eth-lightwallet/dist/lightwallet.js"></script>
+    
+    <script type="text/javascript" src="../eth-lightwallet/node_modules/async/lib/async.js"></script>
+    <!-- <script src="../eth-lightwallet/node_modules/hooked-web3-provider/build/hooked-web3-provider.js"></script> -->
+    <script src="https://cdn.rawgit.com/ethereumjs/browser-builds/2fb69a714afe092b06645286f14b94f41e5c062c/dist/ethereumjs-tx.js"></script>
+    <script type="text/javascript" src="../eth-lightwallet/node_modules/web3/dist/web3.js"></script>
+    <!-- <script src="../ethjs-provider-signer/dist/ethjs-provider-signer.js"></script> -->
+
+<link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+    <style type="text/css">
+        .table-wrapper-scroll-y {
+display: block;
+max-height: 500px;
+overflow-y: auto;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+}   
+.box{
+    background-color: #f2f2f2;
+}
+.heading{
+
+color: rgb(97, 97, 149);
+margin-left:50%;
+padding-top:3%;
+padding-bottom:1%;
+}
+.para{
+
+
+margin-left:40%;
+
+
+}
+.img{
+    padding-top:1%;
+margin-left:42%;
+margin-bottom: 3%
+}
+.formcontrol{
+   width:60%;
+   margin-left:20% ;
+   padding:5px;
+
+}
+.btn1{
+    margin-left:-0.3%;
+    width:10%;
+border-radius: 0px;
+}
+.div1{
+      padding-top:5%;
+       padding-bottom:5%;
+}
+.btn2{
+margin-left: 30%;
+margin-right: 3%;
+width:15%;
+}
+.btn3{
+width:30%;
+}
+span{
+  background-color: #990000;
+  color:white;
+}
+
+    </style>
+  
+<title>Etgcn</title>
+</head>
+
+<body>
+<div class="main profile-page">
+    <div class="container-fluid header-block inner-header">
+        <div class=" container">
+            <nav class="navbar navbar-inverse menu">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand logo" href="/dashboard"><img src="/static/images/logo-black.png"></a> 
+                    </div>
+                    
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a href="/dashboard">Home</a></li>
+                        <li><a href="#">About etgcn</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li class="user-icon"><a href="#"><i><img src="/static/images/user-icon.png"></i></a> </li>
+                        
+                    </ul>
+                </div>
+                 <a class="user-icon hidden visible-xs" href="#"><i><img src="/static/images/user-icon.png"></i></a> 
+                <div class="user-details-block">
+                            <div class="user-details">
+                                 <div class="user-details">
+                                <div class="user-name-block pull-left">
+                                    <h4><%= user %> </h4>
+                                    <p> <%= email %> </p>
+                                </div>
+                                <ul class="clear-fix">
+                                
+                                </ul>
+                                <p><a href="/kyc">KYC</a></p>
+                                <p><a href="/logout">Logout </a></p>
+                                <span class="close">x</span> <span class="arrow-up"></span> </div>
+                    </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container-fluid inner-content ">
+        <div class="container">
+            
+            <div class="box">
+                <h3 class="heading"><b>ETH</b></h3>
+                <p class="para">Send <span>&nbsp;<%=eth%> eth&nbsp;</span> to this address and receive <span>&nbsp;<%=eth %> etgcn&nbsp;</span></p>
+                <img class="img" src="/static/img/qrcode.png">
+                <input class="formcontrol " type="text" value="0x7d04EdC8C00BBAA69346336582328092EBd557B5" style=" background-color: #fff;" readonly>
+                <button class="btn btn1 btn-primary" onclick="copyToClipboard('0x7d04EdC8C00BBAA69346336582328092EBd557B5')">copy</button>
+                <div class="div1">
+                <!-- <button class="btn btn2">Back</button> -->
+                <!-- <button class="btn btn3 btn-primary">Check my payment&emsp;>></button> -->
+
+                </div>
+                <input class="form-control" type="text" value="Your payment has not reached us yet.Please check your balance again in few minutes" style=" background-color: #990000;color:#fff;text-align:center;margin-bottom:2%" readonly>
+            </div>
+
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="dark-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Tokens</h3>
+                    <ul class="nav-footer">
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_news" href="#" ga-binded="done">News</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_dat" href="#" ga-binded="done"> Token and cryptocurrency database </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icocal" href="#" ga-binded="done"> ICO calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_stocal" href="#" ga-binded="done"> Security token calendar </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_referral_programs" href="#" ga-binded="done"> Bounty programs </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_know" href="#" ga-binded="done"> Help center </a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Business</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_list" href="#" ga-binded="done"> List your token for free </a> </li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icoadv" href="#" ga-binded="done">ICO advisory</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_icopre" href="#" ga-binded="done">Security token advisory</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_best_icoadv" href="#" ga-binded="done"> The best ICO Advisor 2018 </a> </li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_summit" href="#" ga-binded="done">ETG Coin Summit 2018</a> </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h3>Other</h3>
+                    <ul class="nav-footer">
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_fb" href="#" ga-binded="done"> Facebook</a></li>
+                        <li> <a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="mp_sub_twit" href="#" ga-binded="done"> Twitter</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_privacy" href="#" ga-binded="done">Privacy and cookie policy</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_tos" href="#" ga-binded="done">Terms of service</a></li>
+                        <li><a ga-toggle="click" ga-category="footer" ga-action="click" ga-label="global_foot_sect_risk" href="#" ga-binded="done">Sector risk warnings</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h4> &#8203; </h4>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<div class="modal fade popup-block" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+          <h2 class="text-center">Your new wallet seed is: </h2>
+          <p class="greytext" id="ranseed"></p>
+          <button onclick="copyToClipboard('.greytext')">Copy</button>
+
+<p class="redtext">Please write it down on paper or in a password manager, you will need it to access your wallet. Do not let anyone see this seed or they can take your Ether. Please enter a password to encrypt your seed while in the browser.</p>
+                <form action="/walletcreation" method="post">
+                    <div class="field-block">
+                        <div class="group">
+                        <input type="" name="lightwallet_seed" id="ranseed1" style="display: none;"></input>
+                        <input type="text" class="form-control" size="42" name="lightwallet_address" id="sendFrom" style="display: none;"></input>
+                         <input type="text" class="form-control" name="lightwallet_privatekey" id="pvt_key" style="display: none;"></input>
+                            <input type="password" name="lightwallet_password" required="required" maxlength="60" id="password"></input>
+                            <label>Enter password </label>
+                        </div>
+                    </div>
+                    
+                   
+                    <div class="form-group text-center bottom-btns">
+                        <button type="submit" class="btn btn-default login-btn pull-left">Ok</button> <a>Cancel</a>
+                    </div>
+                      
+                </form>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+        </div>
+      
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(".inner-header .navbar-nav > li > a").css("color", "#616195");
+    
+    $(".group input").each(function(){
+    var input_value = $(this).val().length;
+    if(input_value > 0){
+              $(this).addClass('valid');
+              if($(this).val() == ""){$(this).removeClass('valid');}
+     }
+    else
+    {
+           $(this).removeClass('valid');
+     }
+    });
+    
+    $(".group input").keyup(function(){
+        
+        var input_value1 = $(this).val().length;
+        if( input_value1 > 0){
+            $(this).addClass('valid');
+        }
+        else
+        {
+            $(this).removeClass('valid');
+        }
+    });
+    //user-details-block
+    $(".user-icon").click(function(){
+      $(".user-details-block").show();
+    });
+
+    $(".close").click(function(){
+      $(".user-details-block").hide();
+    });
+    // for pop up modal
+    $(document).ready(function(){
+    id=$("#lwadd").html();
+    if(id==""){
+       newWallet();
+    }
+});
+    //order-summary-block
+$(".cart").click(function(){
+      $(".order-summary-block").show();
+    });
+
+    $(".closebuy").click(function(){
+      $(".order-summary-block").hide();
+    });
+    // for copying text to clipboard from popup
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+}
+    </script>
+<script src="/static/js/jquery.min.js" type="text/javascript"></script> 
+<script src="/static/js/bootstrap.min.js" type="text/javascript"></script> 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</body>
+<script type="text/javascript" src="/static/js/main.js"></script>
+</html>
+
+
+
+
+ 
+
+
