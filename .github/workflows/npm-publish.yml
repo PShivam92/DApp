@@ -1,0 +1,49 @@
+---
+name: Key Manager
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - run: pnpm install
+      - run: pnpm test
+      - name: Log test results
+        run: |
+          echo "Test results:" >> test-results.log
+          cat test-results.log
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - run: pnpm install
+      - run: pnpm lint
+      - name: Log lint errors
+        run: |
+          echo "Lint errors:" >> lint-errors.log
+          cat lint-errors.log
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - run: pnpm install
+      - run: pnpm prettier --check .
+      - name: Log prettier errors
+        run: |
+          echo "Prettier errors:" >> prettier-errors.log
+          cat prettier-errors.log
